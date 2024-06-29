@@ -1,3 +1,8 @@
+
+* {
+    box-sizing: border-box;
+}
+
 body {
     font-family: Arial, sans-serif;
     background-color: #f0f0f0;
@@ -16,6 +21,10 @@ body {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     width: 400px;
     text-align: center;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 header {
@@ -30,6 +39,10 @@ h1 {
 h2 {
     font-size: 1.2em;
     color: #666;
+}
+
+form {
+    width: 100%;
 }
 
 label {
@@ -48,10 +61,6 @@ input {
     font-size: 1em;
 }
 
-.student-info {
-    text-align: left;
-    margin-top: 20px;
-}
 
 p {
     margin: 5px 0;
@@ -77,4 +86,29 @@ button {
 
 button:hover {
     background-color: #0056b3;
+}
+
+.student-container {
+    width: 100%;
+}
+
+.student-info {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+}
+
+#time-out-btn {
+    background-color: red;
+}
+
+.hidden{
+    display:none;
+}
+
+#action-message {
+    margin-top: 30px;
+    padding: 10px;
+    border: 1px solid red
 }

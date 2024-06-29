@@ -5,26 +5,50 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Student Portal</title>
     <link rel="stylesheet" href="styles/index.css">
-
+    <script src="js/index.js" type="module"></script>
 </head>
 <body>
     <div class="container">
         <h1>Please enter your student ID (LRN):</h1>
-        <form>
+        <form action="#">
             <label for="lrn">Student ID:</label>
             <input id="lrn" type="text">
+            <button type="submit">Search</button>
         </form>
-        <div class="student-info">
+
+        <hr>
+
+        <div class="student-container">
             <h1>Student Information</h1>
-            <div>
-                <p>Student ID: 1092831</p>
-                <p>Full Name: Mark Cobo</p>
-                <p>Course: BS IT</p>
-                <p>Year level: 3</p>
+            <div class="student-info">
+                <div class="info-field">
+                    <span>Student ID:</span>
+                    <span id="student-id"></span>
+                </div>
+                <div class="info-field">
+                    <span>Full Name:</span>
+                    <span id="student-name"></span>
+                </div>
+                <div class="info-field">
+                    <span>Course:</span>
+                    <span id="student-course"></span>
+                </div>
+                <div class="info-field">
+                    <span>Year Level:</span>
+                    <span id="student-level"></span>
+                </div>
             </div>
-            <div class="buttons">
-                <button type="button">IN</button>
-                <button type="button">OUT</button>
+            <div id="actions" class="hidden">
+                <div class="buttons">
+                    <button id="time-in-btn" type="button">IN</button>
+                    <button id="time-out-btn" type="button">OUT</button>
+                </div>
+            </div>
+
+            <div id="action-message" class="hidden">
+                <p>Successfully performed <span id="action-type"></span>!</p>
+                <p>Reference number: <span id="action-id"></span></p>
+                <p>Timestamp: <span id="action-timestamp"></span></p>
             </div>
         </div>
     </div>
