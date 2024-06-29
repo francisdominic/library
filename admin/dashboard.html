@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="/dashboard.css">
+
+</head>
+<body>
+    <h1 class="header">Admin Dashboard</h1>
+    <form class="form">
+        <label for="lrn">Student ID:</label>
+        <input id="lrn" type="text">
+    </form> 
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Student ID</th>
+                <th>Full Name</th>
+                <th>Course</th>
+                <th>Year Level</th>
+                <th>Action/s</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>17236217312</td>
+                <td>Mark Cobo</td>
+                <td>BSIT</td>
+                <td>3</td>
+                <td><button type="button">Show timelogs</button></td>
+            </tr>
+        </tbody>
+    </table>
+    <hr>
+    <h1 class="header">(Modal) Mark Cobo's timelogs</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Type</th>
+                <th>Timestamp</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>TIME IN</td>
+                <td>June 29, 2024 8:30 AM</td>
+            </tr>
+            <tr>
+                <td>TIME OUT</td>
+                <td>June 29, 2024 10:30 AM</td>
+            </tr>
+            <tr>
+                <td>TIME IN</td>
+                <td>June 29, 2024 1:30 PM</td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>
