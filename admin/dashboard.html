@@ -1,51 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Admin Dashboard</title>
-    <link rel="stylesheet" href="/styles/dashboard.css">
+    <link rel="stylesheet" href="/styles/dashboard.css" />
     <script type="module" src="/js/dashboard.js"></script>
-
-</head>
-<body>
-    <script type="module">
-        import { showTimelogs } from '/js/dashboard.js';
-
-        function log() {
-            console.log("hello worlds");
-            showTimelogs()
-        }
-    </script>
-    <h1 class="header">Admin Dashboard</h1>
+  </head>
+  <body>
+    <div class="navbar">
+      <h1 class="header">Admin Dashboard</h1>
+      <button class="btn" id="logout-btn">Sign Out</button>
+    </div>
     <table class="table">
-        <thead>
-            <tr>
-                <th>Student ID</th>
-                <th>Full Name</th>
-                <th>Course</th>
-                <th>Year Level</th>
-            </tr>
-        </thead>
-        <tbody id="students-list">
-        </tbody>
+      <thead>
+        <tr>
+          <th>Student ID</th>
+          <th>Full Name</th>
+          <th>Course</th>
+          <th>Year Level</th>
+        </tr>
+      </thead>
+      <tbody id="students-list"></tbody>
     </table>
-    <hr>
+    <hr />
     <form class="form" action="#">
-        <label for="lrn">Student ID:</label>
-        <input id="lrn" type="text">
-        <button type="submit">Search</button>
+      <label for="lrn">Student ID:</label>
+      <input id="lrn" type="text" />
+      <button class="btn" type="submit">Search</button>
     </form>
     <h1 class="header" id="student-name"></h1>
     <table class="table">
-        <thead>
-            <tr>
-                <th>Type</th>
-                <th>Timestamp</th>
-            </tr>
-        </thead>
-        <tbody id="timelogs">
-        </tbody>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Timestamp</th>
+        </tr>
+      </thead>
+      <tbody id="timelogs"></tbody>
     </table>
-</body>
+  </body>
 </html>
