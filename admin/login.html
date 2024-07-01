@@ -1,25 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin - Login</title>
-    <link rel="stylesheet" href="/styles/login.css">
-</head>
-<body>
-    <div class="container">
-    <header>
-    <h1>Admin Login</h1>
-    </header>
-    <form class="admin-section" method="post">
-
-        <label for="username">Username</label>
-        <input type="text" name="username" id="">
-        <label for="username">Password</label>
-        <input type="text" name="password" id="">
-        <button type="submit">log in</button>
-        
-    </form>
+<html>
+  <head>
+    <title>Firebase Authentication</title>
+    <script type="module" src="/js/firebase.js"></script>
+    <link rel="stylesheet" href="/styles/login.css" />
+  </head>
+  <body>
+      <div class="admin-section">
+        <h1>Admin Dashboard</h1>
+      <input type="email" id="email" value="library@email.com" placeholder="Email" />
+      <input type="password" id="password" value="" placeholder="Password" />
+      <button id="login-btn"">Sign in</button>
     </div>
-</body>
+    <script src="/js/login.js" type="module"></script>
+  </body>
 </html>
