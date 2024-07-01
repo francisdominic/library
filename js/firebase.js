@@ -3,14 +3,12 @@ import { getFirestore } from "https://www.gstatic.com/firebasejs/10.12.2/firebas
 import { getAuth } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCN8yzQCYTQHSHMv6Q80V3Xm6Vns_8IUg0",
-  authDomain: "athena-69319.firebaseapp.com",
-  databaseURL:
-    "https://athena-69319-default-rtdb.asia-southeast1.firebasedatabase.app",
-  projectId: "athena-69319",
-  storageBucket: "athena-69319.appspot.com",
-  messagingSenderId: "563546162362",
-  appId: "1:563546162362:web:a5496fbd05da55ef392e83",
+  apiKey: "AIzaSyBhuPcodnhv1wznGVQsos5vLx68IEtaM_M",
+  authDomain: "timelogger-75e24.firebaseapp.com",
+  projectId: "timelogger-75e24",
+  storageBucket: "timelogger-75e24.appspot.com",
+  messagingSenderId: "83903013398",
+  appId: "1:83903013398:web:08f65bcbddc9a648c80b37",
 };
 
 const app = initializeApp(firebaseConfig);
