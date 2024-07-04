@@ -5,6 +5,7 @@ import {
   getDocs,
   query,
   collection,
+  orderBy,
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 import {
   onAuthStateChanged,
@@ -15,7 +16,7 @@ import { db, auth, STUDENTS_TABLE, TIMELOGS_TABLE } from "./firebase.js";
 
 function fetchStudents() {
   const studentsRef = collection(db, STUDENTS_TABLE);
-  let q = query(studentsRef);
+  let q = query(studentsRef, orderBy("course"));
 
   getDocs(q).then((snapshot) => {
     let results = "";
@@ -46,7 +47,7 @@ function searchStudent(id) {
       document.getElementById("student-name").innerHTML = student.full_name;
 
       const studentsRef = collection(db, TIMELOGS_TABLE);
-      let q = query(studentsRef, where("lrn", "==", id));
+      let q = query(studentsRef, orderBy("timestamp"), where("lrn", "==", id));
       getDocs(q).then((snapshot) => {
         let results = "";
         snapshot.forEach((doc) => {
