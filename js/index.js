@@ -48,7 +48,7 @@ function onSubmit(e) {
   retrieveStudentInfo(studentId);
 }
 
-function updateStatus(status) {
+function updateStatus(status, lrnId) {
   const docRef = doc(db, STUDENTS_TABLE, lrnId);
   getDoc(docRef).then(async (snapshot) => {
     if (snapshot.exists()) {
@@ -69,7 +69,7 @@ function updateStatus(status) {
 function performTimeIn() {
   const now = new Date().toLocaleString();
   const lrnId = document.getElementById("student-id").innerHTML;
-
+  
   // add to timelogs
 
   const data = {
@@ -85,7 +85,7 @@ function performTimeIn() {
     document.getElementById("actions").classList.add("hidden");
   });
 
-  updateStatus("in");
+  updateStatus("in", lrnId);
 }
 
 function performTimeOut() {
@@ -107,7 +107,7 @@ function performTimeOut() {
     document.getElementById("actions").classList.add("hidden");
   });
 
-  updateStatus("out"); 
+  updateStatus("out", lrnId); 
 }
 
 document.addEventListener("DOMContentLoaded", function () {

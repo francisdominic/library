@@ -108,7 +108,11 @@ function readFile(event) {
     var json = JSON.parse(e.target.result);
     console.log(json);
     json.forEach(function(obj) {
-       setDoc(doc(db, STUDENTS_TABLE, obj.id), obj);
+       setDoc(doc(db, STUDENTS_TABLE, obj.lrn), {
+          course: obj.course,
+          full_name: obj.full_name,
+          year_level: obj.year_level
+       });
    });
     
   };
