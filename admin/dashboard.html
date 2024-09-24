@@ -12,6 +12,10 @@
       <h1 class="header">Admin Dashboard</h1>
       <button class="btn" id="logout-btn">Sign Out</button>
     </div>
+     <!--for bulk upload-->
+     <label for="fileInput">Upload Student Data: </label>
+     <input type="file" id="fileInput" />
+     <pre id="fileContent"></pre>
     <table class="table">
       <thead>
         <tr>
@@ -24,6 +28,7 @@
       <tbody id="students-list"></tbody>
     </table>
     <hr />
+
     <form class="form" action="#">
       <label for="lrn">Student ID:</label>
       <input id="lrn" type="text" />

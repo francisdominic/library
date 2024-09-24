@@ -1,6 +1,8 @@
 import {
   doc,
+  setDoc,
   where,
+  addDoc,
   getDoc,
   getDocs,
   query,
@@ -90,5 +92,29 @@ function logOut() {
       console.error("Error Logging Out:", error);
     });
 }
+document.getElementById('fileInput').addEventListener('change', readFile);
+function readFile(event) {
 
+  const file = event.target.files[0];
+
+  if (!file) {
+    alert("No file selected!");
+    return;
+  }
+
+  const reader = new FileReader();
+
+  reader.onload = function(e) {
+    var json = JSON.parse(e.target.result);
+    console.log(json);
+    json.forEach(function(obj) {
+       setDoc(doc(db, STUDENTS_TABLE, obj.id), obj);
+   });
+    
+  };
+
+  reader.readAsText(file);
+  alert("done importing student data");
+  fetchStudents();
+}
 fetchStudents();
