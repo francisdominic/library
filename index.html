@@ -14,12 +14,12 @@
       <form action="#">
         <label for="lrn">Student ID:</label>
         <input id="lrn" type="text" />
-        <button type="submit">Search</button>
+        <button id="search-btn" type="submit">Search</button>
       </form>
       <hr />
-      <div class="student-container">
+      <div id="student-info" class="student-container hidden">
         <h1>Student Information</h1>
-        <div class="student-info">
+        <div>
           <div class="info-field">
             <span>Student ID:</span>
             <span id="student-id"></span>
@@ -39,8 +39,8 @@
         </div>
         <div id="actions" class="hidden">
           <div class="buttons">
-            <button id="time-in-btn" type="button">IN</button>
-            <button id="time-out-btn" type="button">OUT</button>
+            <button id="time-in-btn" type="button" class="hidden">IN</button>
+            <button id="time-out-btn" type="button" class="hidden">OUT</button>
           </div>
         </div>
 
