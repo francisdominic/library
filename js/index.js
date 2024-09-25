@@ -34,6 +34,9 @@ const retrieveStudentInfo = (id) => {
         document.getElementById("time-out-btn").classList.add("hidden");
       }
       document.getElementById("actions").classList.remove("hidden");
+     
+      document.getElementById("lrn").value = "";
+
     } else {
       alert(`Student with LRN ${id} does not exist!`);
     }
@@ -79,7 +82,6 @@ function performTimeIn() {
   };
   addDoc(collection(db, TIMELOGS_TABLE), data).then((ref) => {
     document.getElementById("action-type").innerHTML = "time in";
-    document.getElementById("action-id").innerHTML = ref.id;
     document.getElementById("action-timestamp").innerHTML = now;
     document.getElementById("action-message").classList.remove("hidden");
     document.getElementById("actions").classList.add("hidden");
@@ -101,7 +103,6 @@ function performTimeOut() {
 
   addDoc(collection(db, TIMELOGS_TABLE), data).then((ref) => {
     document.getElementById("action-type").innerHTML = "time out";
-    document.getElementById("action-id").innerHTML = ref.id;
     document.getElementById("action-timestamp").innerHTML = now;
     document.getElementById("action-message").classList.remove("hidden");
     document.getElementById("actions").classList.add("hidden");
@@ -110,7 +111,15 @@ function performTimeOut() {
   updateStatus("out", lrnId); 
 }
 
+function performSearch() {
+  const lrnId = document.getElementById("lrn").value;
+  if (lrnId.length >= 10) {
+    document.getElementById("search-btn").click();
+  }
+}
+
 document.addEventListener("DOMContentLoaded", function () {
+  document.getElementById("lrn").addEventListener("input", performSearch);
   document.querySelector("form").addEventListener("submit", onSubmit);
   document
     .getElementById("time-in-btn")
