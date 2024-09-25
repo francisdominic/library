@@ -191,3 +191,98 @@ function readFile(event) {
   fetchStudents();
 }
 fetchStudents();
+
+
+// Load the Visualization API and the corechart package.
+google.charts.load('current', { packages: ['corechart'] });
+
+// Set a callback to run when the Google Visualization API is loaded.
+google.charts.setOnLoadCallback(initialize);
+
+
+function initialize() {
+  document.getElementById("view-report-btn").onclick = drawChart;
+  document.getElementById("close-modal-btn").onclick = closeModal;
+}
+
+// Callback that creates and populates a data table,
+// instantiates the bar chart, passes in the data and
+// draws it.
+async function drawChart() {
+    // tally 1 year data
+    const tallyByMonth = await fetchAndTallyByMonth(getNextMonthMinusOneYear());
+   
+    var data = google.visualization.arrayToDataTable([['Month', 'Timelogs']].concat(tallyByMonth));
+
+    // Set chart options
+    var options = {
+        title: 'Monthly Report',
+        width: 900,
+        height: 400,
+        hAxis: {
+            title: 'Month'
+        },
+        vAxis: {
+            title: 'Timelogs'
+        },
+        legend: { position: 'none' }  // Hides the legend
+    };
+
+    // Instantiate and draw the chart.
+    var chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
+    chart.draw(data, options);
+
+
+    // Display the modal
+    document.getElementById("myModal").style.display = "block";
+}
+
+function closeModal() {
+    document.getElementById("myModal").style.display = "none";
+}
+
+function getNextMonthMinusOneYear() {
+  // Get the current date
+  const currentDate = moment();
+
+  // Get the next month and subtract one year
+  const resultDate = currentDate.add(1, 'months').subtract(1, 'years');
+
+  // Format the result as YYYY-MM-DD
+  return resultDate.format('YYYY-MM-01');
+}
+
+async function fetchAndTallyByMonth(startDate) {
+  const results = [];
+  const timelogsRef = collection(db, TIMELOGS_TABLE);
+  let q = query(timelogsRef, orderBy("timestamp"), where("timestamp", ">=", startDate));
+  const querySnapshot = await getDocs(q);
+  
+  // Object to store tally by month
+  const tallyByMonth = [];
+
+  querySnapshot.forEach((doc) => {
+      const data = doc.data();
+      const timestamp = data.timestamp;
+
+      if (timestamp) {
+
+          const date = moment(timestamp, "YYYY-MM-DD hh:mm:ss a");
+          // Get the month (0-indexed, where 0 = January, 11 = December)
+          const month = date.format("MMM"); // This will return 8 for September
+
+          // Increment the count for the corresponding month
+          if (tallyByMonth[month]) {
+              tallyByMonth[month]++;
+          } else {
+              tallyByMonth[month] = 1;
+          }
+      }
+  });
+
+  Object.entries(tallyByMonth).forEach(([i, val]) => {
+    results.push([i, val]);
+  });
+
+  return results;
+}
