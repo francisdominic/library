@@ -84,6 +84,7 @@ document.addEventListener("DOMContentLoaded", function () {
   document.querySelector("form").addEventListener("submit", onSubmit);
   document.getElementById("logout-btn").addEventListener("click", logOut);
   document.getElementById("clear-btn").addEventListener("click", clearTimelogs);
+  document.getElementById("download-monthly-report-btn").addEventListener("click", downloadMonthlyReport);
 });
 
 function logOut() {
@@ -101,6 +102,64 @@ function clearTimelogs() {
   document.getElementById("timelogs-container").classList.add("hidden");
   document.getElementById("clear-btn").classList.add("hidden");
 }
+
+function downloadMonthlyReport() {
+  console.log("downloading monthly report starting from date: " + getFirstDayOfMonth());
+  
+  // fetch all timelogs based on the first day of the month
+  fetchTimelogsFromDate(getFirstDayOfMonth());
+}
+
+function getFirstDayOfMonth() {
+  // Get the year, month, and day
+  const currentDate = new Date();
+  const year = currentDate.getFullYear();
+  const month = String(currentDate.getMonth() + 1).padStart(2, '0');  // Add 1 to the month and pad with 0 if needed
+
+  // Combine into the format YYYY-MM-DD
+  return `${year}-${month}-01`;
+}
+
+function fetchTimelogsFromDate(startDate) {
+  const timelogsRef = collection(db, TIMELOGS_TABLE);
+  let results = "";
+  let q = query(timelogsRef, orderBy("timestamp"), where("timestamp", ">=", startDate));
+  getDocs(q).then((snapshot) => {
+    // Convert data to CSV string
+    const csvContent = convertToCSV(snapshot);
+
+    // Create a Blob from the CSV string
+    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+
+    // Create a link element
+    const link = document.createElement("a");
+    const url = URL.createObjectURL(blob);
+    link.setAttribute("href", url);
+    link.setAttribute("download", `timelogs-for-${startDate}.csv`);
+
+    // Append link to the body (required for Firefox)
+    document.body.appendChild(link);
+    link.click();  // Trigger the download
+    document.body.removeChild(link);  // Remove link from the document
+  });
+}
+
+function convertToCSV(snapshot) {
+  const headers = "Timestamp,Type,StudentID";
+  if (!snapshot.empty) {
+    // get rows
+    let rows = [headers];
+    snapshot.forEach((doc) => {
+      const rowData = doc.data();
+      rows.push(`${rowData.timestamp},${rowData.type},${rowData.lrn}`);
+    });
+    
+    return rows.join("\n");
+  }
+
+  return "";
+}
+
 
 document.getElementById('fileInput').addEventListener('change', readFile);
 function readFile(event) {

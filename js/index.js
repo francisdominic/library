@@ -70,7 +70,7 @@ function updateStatus(status, lrnId) {
 }
 
 function performTimeIn() {
-  const now = new Date().toLocaleString();
+  const now = moment().format('YYYY-MM-DD hh:mm:ss a');
   const lrnId = document.getElementById("student-id").innerHTML;
   
   // add to timelogs
@@ -91,7 +91,7 @@ function performTimeIn() {
 }
 
 function performTimeOut() {
-  const now = new Date().toLocaleString();
+  const now = moment().format('YYYY-MM-DD hh:mm:ss a')
   const lrnId = document.getElementById("student-id").innerHTML;
   const data = {
     lrn: lrnId,
