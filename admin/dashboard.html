@@ -12,7 +12,30 @@
       <h1 class="header">Admin Dashboard</h1>
       <button class="btn" id="logout-btn">Sign Out</button>
     </div>
+    
+    <!-- for filtering student -->
+    <form class="form" action="#">
+      <label for="lrn">Student ID:</label>
+      <input id="lrn" type="text" />
+      <button class="btn" type="submit">View Timelogs</button>
+      <button id="clear-btn" class="btn hidden">Clear</button>
+    </form>
+    <div id="timelogs-container" class="hidden">
+      <h2 class="header" id="student-name"></h2>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Type</th>
+            <th>Timestamp</th>
+          </tr>
+        </thead>
+        <tbody id="timelogs"></tbody>
+      </table>
+    </div>
+    <hr />
+
      <!--for bulk upload-->
+     <h2 class="header">All Students</h2>
      <label for="fileInput">Upload Student Data: </label>
      <input type="file" id="fileInput" />
      <pre id="fileContent"></pre>
@@ -26,23 +49,6 @@
         </tr>
       </thead>
       <tbody id="students-list"></tbody>
-    </table>
-    <hr />
-
-    <form class="form" action="#">
-      <label for="lrn">Student ID:</label>
-      <input id="lrn" type="text" />
-      <button class="btn" type="submit">Search</button>
-    </form>
-    <h1 class="header" id="student-name"></h1>
-    <table class="table">
-      <thead>
-        <tr>
-          <th>Type</th>
-          <th>Timestamp</th>
-        </tr>
-      </thead>
-      <tbody id="timelogs"></tbody>
     </table>
   </body>
 </html>

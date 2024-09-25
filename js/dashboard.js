@@ -62,6 +62,8 @@ function searchStudent(id) {
                     `;
         });
         document.getElementById("timelogs").innerHTML = results;
+        document.getElementById("timelogs-container").classList.remove("hidden");
+        document.getElementById("clear-btn").classList.remove("hidden");
       });
     }
   });
@@ -81,6 +83,7 @@ document.addEventListener("DOMContentLoaded", function () {
   });
   document.querySelector("form").addEventListener("submit", onSubmit);
   document.getElementById("logout-btn").addEventListener("click", logOut);
+  document.getElementById("clear-btn").addEventListener("click", clearTimelogs);
 });
 
 function logOut() {
@@ -92,6 +95,13 @@ function logOut() {
       console.error("Error Logging Out:", error);
     });
 }
+
+function clearTimelogs() {
+  document.getElementById("lrn").value = "";
+  document.getElementById("timelogs-container").classList.add("hidden");
+  document.getElementById("clear-btn").classList.add("hidden");
+}
+
 document.getElementById('fileInput').addEventListener('change', readFile);
 function readFile(event) {
 
