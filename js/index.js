@@ -47,7 +47,7 @@ const retrieveStudentInfo = (id) => {
 
 function onSubmit(e) {
   e.preventDefault();
-  const studentId = document.getElementById("lrn").value;
+  const studentId = document.getElementById("lrn").value.trim();
   retrieveStudentInfo(studentId);
 }
 
@@ -112,8 +112,8 @@ function performTimeOut() {
 }
 
 function performSearch() {
-  const lrnId = document.getElementById("lrn").value;
-  if (lrnId.length >= 10) {
+  const lrnId = document.getElementById("lrn").value.trim();
+   if (lrnId.length >= 10) {
     document.getElementById("search-btn").click();
   }
 }
