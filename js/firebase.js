@@ -17,3 +17,4 @@ export const auth = getAuth(app);
 
 export const TIMELOGS_TABLE = "library-timelogs";
 export const STUDENTS_TABLE = "library-students";
+export const ADMIN_DETAILS_TABLE = "admin-details";
