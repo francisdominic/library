@@ -27,7 +27,7 @@ function fetchStudents() {
       results += `
             <tr>
                 <td>${doc.id}</td>
-                <td>${data.full_name}</td>
+                <td>${decrypt(data.full_name)}</td>
                 <td>${data.course}</td>
                 <td>${data.year_level}</td>
             </tr>
@@ -162,6 +162,31 @@ function convertToCSV(snapshot) {
 
 
 document.getElementById('fileInput').addEventListener('change', readFile);
+
+// encrypt the input by using the next letter in the alphabet
+function encrypt(input){
+  return input.split('').map(char => {
+        if (/[a-zA-Z]/.test(char)) {
+            let base = char === char.toLowerCase() ? 'a'.charCodeAt(0) : 'A'.charCodeAt(0);
+            return String.fromCharCode(((char.charCodeAt(0) - base + 1) % 26) + base);
+        }
+        return char; // Keep non-alphabet characters as is
+    }).join('');
+}
+
+// decrypt the input by using the previous letter in the alphabet
+function decrypt(input) {
+  return input.split('').map(char => {
+      if (/[a-zA-Z]/.test(char)) {
+          let base = char === char.toLowerCase() ? 'a'.charCodeAt(0) : 'A'.charCodeAt(0);
+          return String.fromCharCode(((char.charCodeAt(0) - base - 1 + 26) % 26) + base);
+      }
+      return char; // Keep non-alphabet characters as is
+  }).join('');
+}
+
+
+
 function readFile(event) {
 
   const file = event.target.files[0];
@@ -179,7 +204,7 @@ function readFile(event) {
     json.forEach(function(obj) {
        setDoc(doc(db, STUDENTS_TABLE, obj.lrn), {
           course: obj.course,
-          full_name: obj.full_name,
+          full_name: encrypt(obj.full_name),
           year_level: obj.year_level
        });
    });

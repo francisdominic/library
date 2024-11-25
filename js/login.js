@@ -22,6 +22,7 @@ function logIn() {
       const errorCode = error.code;
       const errorMessage = error.message;
       console.error("Error Logging In:", errorCode, errorMessage);
+      alert("Wrong username or password!");
     });
 }
 document.addEventListener("DOMContentLoaded", function () {
